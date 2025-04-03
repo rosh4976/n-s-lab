@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Prompt the user for the file name
+echo "Enter the file name:"
+read INPUT_FILE
+
+# Check if the file exists
+if [[ ! -f "$INPUT_FILE" ]]; then
+  echo "File '$INPUT_FILE' does not exist!"
+  exit 1
+fi
+
+# Prompt the user for the starting line number
+echo "Enter the starting line number:"
+read START_LINE
+
+# Prompt the user for the ending line number
+echo "Enter the ending line number:"
+read END_LINE
+
+# Check if the start and end line numbers are valid integers
+if ! [[ "$START_LINE" =~ ^[0-9]+$ ]] || ! [[ "$END_LINE" =~ ^[0-9]+$ ]]; then
+  echo "Error: Both the starting and ending line numbers must be positive integers."
+  exit 1
+fi
+
+# Check if the start line is greater than the end line
+if [ "$START_LINE" -gt "$END_LINE" ]; then
+  echo "Error: The starting line number cannot be greater than the ending line number."
+  exit 1
+fi
+
+# Use sed to extract the specified range of lines
+echo "Extracting lines from $START_LINE to $END_LINE in file '$INPUT_FILE':"
+sed -n "${START_LINE},${END_LINE}p" "$INPUT_FILE"
+

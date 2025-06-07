@@ -1,16 +1,16 @@
-write a shell script that takes two numbers and an arithmetic operation (+,-,\*,/)as command line arguments .implement the arithmetic operation based on the provided operator using a case statement.
+#write a shell script that takes two numbers and an arithmetic operation (+,-,\*,/)as command line arguments .implement the arithmetic operation based on the provided operator using a case statement.
 #!/bin/bash
 
+while true
+do
 # Check if exactly 3 arguments are given
-if [ $# -ne 3 ]; then
-  echo "Usage: $0 number1 operator number2"
-  echo "Example: $0 10 + 5"
-  exit 1
-fi
+echo "enter the 1st number:"
+read num1
+echo "enter the second number "
+read num2
+echo "enter the operator"
 
-num1=$1
-op=$2
-num2=$3
+read op
 
 # Case statement for arithmetic operations
 case "$op" in
@@ -34,6 +34,15 @@ case "$op" in
     echo "Invalid operator. Use +, -, *, or /"
     exit 1
     ;;
+   
 esac
 
-echo "Result: $result"
+echo "Result: $result"     
+echo  "do you want to continue? "
+read choice
+if [ "$choice" !="yes" ];then
+	echo "exiting ..."
+	break
+fi
+done
+

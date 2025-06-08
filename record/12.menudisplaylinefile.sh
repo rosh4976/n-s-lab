@@ -26,7 +26,7 @@ do
                         read dirname
                         if [ -d "$dirname" ]
                         then
-                                echo "files in directory:'$filename':"
+                                echo "files in directory:'$dirname':"
                                 ls -l "$dirname"
                         else
                                 echo "error:directory '$dirname' not found"
